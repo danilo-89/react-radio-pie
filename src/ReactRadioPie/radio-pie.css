@@ -1,0 +1,181 @@
+.radio-pie {
+	position: relative;
+	--radio-pie-focus-color: #13badc;
+	--radio-pie-main-bg-color: #0f2027;
+	--radio-pie-choice-text-color: #f5f5f5;
+	--radio-pie-radio-bg-color: #ffffff;
+	--radio-pie-radio-dot-color: #ef4471;
+	--radio-pie-choice-bg-color: #848484;
+	--radio-pie-choice-even-bg-color: #6f6f6f;
+	--radio-pie-hover-bg-color: #bd1b51;
+	--radio-pie-active-bg-color: #ff4f8a;
+	--radio-pie-mid-circle-bg-color: #eeeeee;
+}
+
+.radio-pie-inside {
+	position: relative;
+	display: flex;
+	width: 700px;
+	max-width: 100%;
+}
+
+.radio-pie-background {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: var(--radio-pie-main-bg-color);
+	border-radius: 50%;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.radio-pie-slices {
+	height: auto;
+}
+
+.radio-pie-choice-content {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	color: var(--radio-pie-choice-text-color);
+	background-color: transparent;
+	display: flex;
+	text-align: center;
+	pointer-events: none;
+	font-size: 16px;
+}
+
+.radio-pie-choice-radio {
+	display: block;
+	width: 14px;
+	height: 14px;
+	background-color: var(--radio-pie-radio-bg-color);
+	border-radius: 50%;
+	position: absolute;
+	transform: translate(-50%, -100%);
+	left: 50%;
+	top: -7px;
+}
+
+.radio-pie-choice-content .radio-pie-choice-radio::after {
+	content: '';
+	position: absolute;
+	transform: translate(-50%, -50%);
+	width: 65%;
+	height: 65%;
+	border-radius: 50%;
+	top: 50%;
+	left: 50%;
+}
+
+.radio-pie-choice-content.radio-pie-choice-active
+	.radio-pie-choice-radio::after {
+	background-color: var(--radio-pie-radio-dot-color);
+}
+
+.radio-pie-choice-slice {
+	transition: stroke 0.25s ease;
+	stroke: var(--radio-pie-choice-bg-color);
+}
+
+.radio-pie-choice-slice.radio-pie-choice-element-even {
+	stroke: var(--radio-pie-choice-even-bg-color);
+}
+
+.radio-pie-choice-slice:hover {
+	stroke: var(--radio-pie-hover-bg-color);
+}
+
+.radio-pie-choice-slice:focus,
+.radio-pie-choice-circle:focus {
+	outline: none;
+}
+
+.radio-pie-choice-slice.radio-pie-choice-active {
+	stroke: var(--radio-pie-radio-dot-color);
+}
+
+.radio-pie-choice-slice.radio-pie-choice-active:hover {
+	stroke: var(--radio-pie-hover-bg-color);
+}
+
+/* circle */
+
+.radio-pie-choice-circle {
+	transition: fill 0.25s ease;
+	fill: var(--radio-pie-choice-bg-color);
+}
+
+.radio-pie-choice-circle.radio-pie-choice-element-even {
+	fill: var(--radio-pie-choice-even-bg-color);
+}
+
+.radio-pie-choice-circle:hover {
+	fill: var(--radio-pie-hover-bg-color);
+}
+
+.radio-pie-choice-cißrcle.radio-pie-choice-active {
+	fill: var(--radio-pie-active-bg-color);
+}
+
+.radio-pie-choice-circle.radio-pie-choice-active:hover {
+	fill: var(--radio-pie-hover-bg-color);
+}
+
+.radio-pie-choice-focus-ring {
+	display: none;
+	stroke: var(--radio-pie-focus-color);
+	stroke-width: 0.2%;
+	fill: transparent;
+}
+
+.radio-pie-choice-slice:focus-visible + .radio-pie-choice-focus-ring {
+	display: initial;
+}
+
+.radio-pie-choice-circle:focus-visible + .radio-pie-choice-focus-ring {
+	display: initial;
+}
+
+.radio-pie-mid-circle {
+	position: absolute;
+	transform: translate(-50%, -50%) rotate(0);
+	left: 50%;
+	top: 50%;
+	width: 19%;
+	height: 19%;
+	border-radius: 50%;
+	transition: all 0.45s ease-out;
+}
+
+.radio-pie-mid-circle-background {
+	background-color: var(--radio-pie-mid-circle-bg-color);
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+.radio-pie-mid-circle:not(.radio-pie-choice-undefined)
+	.radio-pie-mid-circle-background::after {
+	content: '';
+	position: absolute;
+	width: 22%;
+	height: 22%;
+	background: inherit;
+	opacity: 1;
+	transition: opacity 0.2s ease;
+	z-index: -1;
+	top: 5%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.radio-pie-mid-circle-hole {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	left: 50%;
+	top: 50%;
+	width: 72%;
+	height: 72%;
+	background-color: var(--radio-pie-choice-bg-color);
+	border-radius: 50%;
+}

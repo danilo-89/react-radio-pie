@@ -1,0 +1,20 @@
+#componentControls {
+	background-color: rgb(223, 223, 223);
+	padding: 15px;
+	margin-bottom: 15px;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#componentControls button {
+	padding: 5px 12px;
+}
+
+#componentControls div {
+	margin-bottom: 5px;
+}
+
+/* global style for radio-pies */
+.radio-pie-inside {
+	margin: auto;
+}

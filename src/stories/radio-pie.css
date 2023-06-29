@@ -1,0 +1,110 @@
+#pieExample {
+	font-size: calc(100vw / 1440 * 10);
+}
+
+@media (max-width: 1920px) {
+	#pieExample {
+		font-size: calc(100vw / 1920 * 10);
+	}
+}
+
+@media (max-width: 1024px) {
+	#pieExample {
+		font-size: calc(100vw / 1024 * 10);
+	}
+}
+
+@media (max-width: 768px) {
+	#pieExample {
+		font-size: calc(100vw / 768 * 10);
+	}
+}
+
+@media (max-width: 655px) {
+	#pieExample {
+		font-size: calc(80vw / 655 * 10);
+	}
+}
+
+@media (max-width: 425px) {
+	#pieExample {
+		font-size: calc(60vw / 425 * 10);
+	}
+}
+@media (max-width: 375px) {
+	#pieExample {
+		font-size: calc(60vw / 375 * 10);
+	}
+}
+
+#pieExample .radio-pie-inside {
+	position: relative;
+	display: flex;
+	width: 70em;
+	max-width: 100%;
+}
+
+#pieExample .radio-pie-background {
+	background: url('./assets/pie.png');
+	background-size: 98%;
+	background-repeat: no-repeat;
+	background-position: center;
+	border-radius: 0;
+}
+
+#pieExample .radio-pie-choice-content {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	color: whitesmoke;
+	background-color: transparent;
+	display: flex;
+	text-align: center;
+	pointer-events: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 2.6em;
+	font-weight: bolder;
+}
+
+#pieExample .radio-pie-choice-content.radio-pie-choice-active {
+	color: #984428;
+}
+
+#pieExample .radio-pie-choice-radio {
+	width: 0.9em;
+	height: 0.9em;
+	background-color: #984428;
+}
+
+#pieExample .radio-pie-choice-content .radio-pie-choice-radio::after {
+	width: 70%;
+	height: 70%;
+	background-color: #ffecc6;
+}
+
+#pieExample
+	.radio-pie-choice-content.radio-pie-choice-active
+	.radio-pie-choice-radio::after {
+	background-color: #f98c91;
+}
+
+#pieExample .radio-pie-choice-slice {
+	transition: stroke 0.25s ease;
+	stroke: transparent;
+}
+
+#pieExample .radio-pie-choice-slice:hover {
+	stroke: rgba(255, 255, 255, 0.3);
+}
+
+#pieExample .radio-pie-choice-slice.radio-pie-choice-active {
+	stroke: white;
+}
+
+#pieExample .radio-pie-choice-slice.radio-pie-choice-active:hover {
+	stroke: rgba(255, 255, 255, 0.9);
+}
+
+#pieExample .radio-pie-choice-focus-ring {
+	stroke: rgb(255, 234, 0);
+	stroke-width: 0.3em;
+}

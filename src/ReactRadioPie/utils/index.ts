@@ -1,6 +1,14 @@
 // Types
 import { IChoices, tReducer, ISlicesData } from '../types';
 
+/**
+ * Calculates the center coordinates of a slice in a circular layout.
+ *
+ * @param {number} k - Index of the slice.
+ * @param {number} centerPos - Position of the center.
+ * @param {number} choicesCount - Total number of choices/slices.
+ * @returns {{x: number, y: number}} - Object containing the x and y coordinates of the center.
+ */
 export const calculateSliceCenter = (
 	k: number,
 	centerPos: number,
@@ -17,6 +25,14 @@ export const calculateSliceCenter = (
 	};
 };
 
+/**
+ * Parses choices data and calculates the necessary properties for each choice in a circular layout.
+ *
+ * @param {IChoices[]} choices - Array of choice objects.
+ * @param {number} choicesCount - Total number of choices.
+ * @param {number} offset - Offset value for stroke dash offset.
+ * @returns {ISlicesData[]} - Array of parsed slices data.
+ */
 export const parseChoicesData = (
 	choices: IChoices[],
 	choicesCount: number,
@@ -43,6 +59,14 @@ export const parseChoicesData = (
 		];
 	}, [] as ISlicesData[]);
 
+/**
+ * Reducer function used for updating data based on the given inputs.
+ *
+ * @param {number | undefined} currData - Current data value.
+ * @param {tReducer} newData - New data value or a function to update the current data.
+ * @param {boolean} deselect - Flag indicating whether to deselect the current data.
+ * @returns {number | undefined} - Updated data value.
+ */
 export const reducer = (
 	currData: number | undefined,
 	newData: tReducer,
@@ -55,6 +79,9 @@ export const reducer = (
 	return newData === currData ? undefined : newData;
 };
 
+/**
+ * Object representing circle radius for different counts.
+ */
 export const circleRadius = {
 	2: 11,
 	3: 11,

@@ -48,7 +48,6 @@ export const reducer = (
 	newData: tReducer,
 	deselect: boolean
 ) => {
-	console.log(currData, newData, deselect);
 	if (typeof newData === 'function') {
 		return newData(currData);
 	}

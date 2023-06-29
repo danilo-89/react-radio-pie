@@ -95,7 +95,6 @@ const ComponentControls = ({ choicesCount }: IComponentControls) => {
 };
 
 const withLayout = (Story: () => JSX.Element, context: StoryContext) => {
-	console.log(context);
 	const choicesCount = context.allArgs.choices.length;
 
 	return (

@@ -1,5 +1,7 @@
 # React Radio Pie (react-radio-pie)
 
+![](src/stories/assets/cover.png)
+
 [![npm version](https://badge.fury.io/js/react-radio-pie.svg)](//npmjs.com/package/react-radio-pie)
 
 Customizable accessible radio button elements in a circular layout suitable for pie chart visualization in React.
@@ -27,7 +29,13 @@ pnpm install react-radio-pie
 ## Basic example
 
 ```javascript
-import ReactRadioPie, { ReactRadioPieProvider } from 'react-radio-pie';
+import ReactRadioPie, {
+	ReactRadioPieProvider,
+	ReactRadioPieCSS,
+} from 'react-radio-pie';
+
+// load css file
+ReactRadioPieCSS();
 
 const choices = [
 	{
@@ -67,7 +75,7 @@ export default function App() {
 
 ## More examples
 
-[Storybook](https://react-radio-pie.vercel.app/)
+[Storybook](https://react-radio-pie.vercel.app/?path=/docs/introduction--docs)
 
 ## License
 

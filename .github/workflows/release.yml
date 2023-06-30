@@ -24,26 +24,24 @@ jobs:
       - name: Check if version is incremented
         id: check-version
         run: |
-          if [[ "${{ steps.get-previous-version.outputs.previous_version }}" == "${{ steps.get-current-version.outputs.current_version }}" ]]; then
-            echo "::set-output name=version_incremented::false"
+          previous_tag=$(git describe --abbrev=0 --tags HEAD^)
+          previous_version=$(echo $previous_tag | sed 's/v//')
+          current_version=$(node -pe "require('./package.json').version")
+          if [[ "$previous_version" == "$current_version" ]]; then
+            echo "version_incremented=false" >> $GITHUB_ENV
           else
-            echo "::set-output name=version_incremented::true"
+            echo "version_incremented=true" >> $GITHUB_ENV
           fi
-
-      - name: Fail if version is not incremented
-        run: |
-          if [[ "${{ steps.check-version.outputs.version_incremented }}" == "false" ]]; then
-            echo "Error: The version has not been incremented."
-            exit 1
-          fi
+        shell: bash
 
       - name: Create tag
-        run: git tag ${{ steps.get-current-version.outputs.current_version }}
+        run: |
+          git tag -a ${{ steps.check-version.outputs.current_version }} -m "Tagging release"
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
       - name: Push tag
-        run: git push origin ${{ steps.get-current-version.outputs.current_version }}
+        run: git push origin ${{ steps.check-version.outputs.current_version }}
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 

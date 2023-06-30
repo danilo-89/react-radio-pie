@@ -21,5 +21,6 @@
 		"declarationMap": true,
 		"noErrorTruncation": false
 		// "types": ["node", "jest", "@testing-library/jest-dom"]
-	}
+	},
+	"include": ["src", "types"]
 }

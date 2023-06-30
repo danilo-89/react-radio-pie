@@ -15,17 +15,17 @@ jobs:
 
       - name: Get previous version
         id: get-previous-version
-        run: echo "::set-output name=previous_version::$(git show HEAD~1:package.json | jq -r .version)"
+        run: echo "previous_version=$(git show HEAD~1:package.json | jq -r .version)" >> $GITHUB_OUTPUT
 
       - name: Get current version
         id: get-current-version
-        run: echo "::set-output name=current_version::$(node -pe "require('./package.json').version")"
+        run: echo "current_version=$(node -pe "require('./package.json').version")" >> $GITHUB_OUTPUT
 
       - name: Check if version is incremented
         id: check-version
         run: |
-          previous_version=${{ steps.get-previous-version.outputs.previous_version }}
-          current_version=$(node -pe "require('./package.json').version")
+          previous_version=$(echo "$GITHUB_OUTPUT" | jq -r '.previous_version')
+          current_version=$(echo "$GITHUB_OUTPUT" | jq -r '.current_version')
           if [[ "$previous_version" == "$current_version" ]]; then
             echo "version_incremented=false" >> $GITHUB_ENV
           else

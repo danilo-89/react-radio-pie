@@ -7,6 +7,9 @@ import ReactRadioPie, {
 	ReactRadioPieCSS,
 } from '../ReactRadioPie';
 
+// load css file
+ReactRadioPieCSS();
+
 import ChoiceContent from '../ReactRadioPie/components/ChoiceContent';
 
 // Styles

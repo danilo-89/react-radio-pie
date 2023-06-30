@@ -8,6 +8,7 @@ module.exports = {
 		'storybook_vitest_addon',
 		// 'storybook-dark-mode',
 		'@storybook/addon-mdx-gfm',
+		'@storybook/addon-storysource',
 	],
 	core: {
 		disableTelemetry: true,
@@ -22,4 +23,5 @@ module.exports = {
 	docs: {
 		autodocs: false,
 	},
+	staticDirs: ['../src/stories/assets'],
 };

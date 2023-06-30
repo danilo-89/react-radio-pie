@@ -24,8 +24,7 @@ jobs:
       - name: Check if version is incremented
         id: check-version
         run: |
-          previous_tag=$(git describe --abbrev=0 --tags HEAD^)
-          previous_version=$(echo $previous_tag | sed 's/v//')
+          previous_version=${{ steps.get-previous-version.outputs.previous_version }}
           current_version=$(node -pe "require('./package.json').version")
           if [[ "$previous_version" == "$current_version" ]]; then
             echo "version_incremented=false" >> $GITHUB_ENV

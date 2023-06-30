@@ -1,0 +1,45 @@
+name: Release on Main Branch Change
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Check if version is incremented
+        id: check-version
+        run: |
+          previous_tag=$(git describe --abbrev=0 --tags HEAD^)
+          previous_version=$(echo $previous_tag | sed 's/v//')
+          current_version=$(node -pe "require('./package.json').version")
+          if [[ "$previous_version" == "$current_version" ]]; then
+            echo "::set-output name=version_incremented::false"
+          else
+            echo "::set-output name=version_incremented::true"
+          fi
+
+      - name: Fail if version is not incremented
+        run: |
+          if [[ "${{ steps.check-version.outputs.version_incremented }}" == "false" ]]; then
+            echo "Error: The version has not been incremented."
+            exit 1
+          fi
+
+      - name: Create release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.sha }}
+          release_name: Release ${{ github.sha }}
+          body: |
+            Release ${{ github.sha }}
+          draft: false
+          prerelease: false

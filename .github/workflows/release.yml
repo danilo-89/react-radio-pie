@@ -35,7 +35,7 @@ jobs:
 
       - name: Create tag
         run: |
-          git tag -a ${{ steps.check-version.outputs.current_version }} -m "Tagging release"
+          git tag -a v${{ steps.get-current-version.outputs.current_version }} -m "Tagging release"
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 

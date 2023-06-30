@@ -1,6 +1,6 @@
 {
   "name": "react-radio-pie",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "danilo-89 (http://github.com/danilo-89)",
   "license": "MIT",
   "description": "Customizable accessible radio button elements in a circular layout suitable for pie chart visualization in React.",
